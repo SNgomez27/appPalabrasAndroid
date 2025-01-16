@@ -9,7 +9,7 @@ public class Palabra {
 @PrimaryKey
 @NonNull
 @ColumnInfo(name = "palabra")
-    private String mPalabra;
+    public String mPalabra;
     public Palabra(@NonNull String palabra){
         this.mPalabra = palabra;
     }
