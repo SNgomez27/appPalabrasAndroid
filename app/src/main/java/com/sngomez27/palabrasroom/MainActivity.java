@@ -10,13 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    LiveData<List<Palabra>> palabraevent;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
@@ -28,15 +34,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
+
+
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
 
-        final PalabraListAdapter adapter = new PalabraListAdapter(new PalabraListAdapter.PalabraDiff());
+        final PalabraListAdapter adapter = new PalabraListAdapter(new PalabraListAdapter.PalabraDiff(),this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

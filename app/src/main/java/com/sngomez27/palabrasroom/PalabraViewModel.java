@@ -14,7 +14,7 @@ public class PalabraViewModel  extends AndroidViewModel{
 
     private final LiveData<List<Palabra>> mPalabras;
 
-    public PalabraViewModel(Application application) {
+    public PalabraViewModel(@NonNull Application application) {
         super(application);
         mPalabraRepository = new PalabraRepository(application);
         mPalabras = mPalabraRepository.getAllPalabras();
@@ -26,4 +26,5 @@ public class PalabraViewModel  extends AndroidViewModel{
     public  void insert(Palabra palabra){
         mPalabraRepository.insert(palabra);
     }
+    public  void delte(Palabra palabra){mPalabraRepository.delete(palabra);}
 }
